@@ -40,9 +40,29 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-@app.route("/cadastro", methods=["post", "GET"])
+@app.route("/cadastro", methods=["POST", "GET"])
 def cadastro():
-    return render_template("cadastro-usuario.html")
+
+
+    if session.get('token'):
+        return redirect(url_for('teste'))
+    if request.method == 'GET':
+        return render_template('cadastro-usuario.html')
+    if request.method == "POST":
+        res = json.loads((requests.post('http://localhost:5000/api/v1/users/', data=json.dumps({
+
+            'email': request.form['email'],
+            'password': request.form['password'],
+            'name': request.form['username']
+        }), headers={
+            'content_type': 'application/json'
+        })).content.decode('utf-8'))
+
+        if res.get('error'):
+            flash(u'email existente', 'error')
+            return redirect(url_for('cadastro'))
+
+    return redirect(url_for('teste'))
 
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
