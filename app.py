@@ -6,6 +6,7 @@ import requests, json
 app = Flask(__name__)
 app.secret_key = b'_1@#12qdasd%#$%$U%DFsd'
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if session.get('token'):
@@ -33,10 +34,17 @@ def teste():
         return redirect(url_for('login'))
     return render_template('posts.html')
 
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('login'))
 
+@app.route("/cadastro", methods=["post", "GET"])
+def cadastro():
+    return render_template("cadastro-usuario.html")
+
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
+
+
