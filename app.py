@@ -38,5 +38,11 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
+@app.route('/cadastrar-post')
+def cadastrarPost():
+    if not session.get('token'):
+        return redirect(url_for('login'))
+    return render_template('cadastrar-post.html')
+
 if __name__ == '__main__':
     app.run(port=8000, debug=True)
