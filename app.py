@@ -6,6 +6,13 @@ import requests, json
 app = Flask(__name__)
 app.secret_key = b'_1@#12qdasd%#$%$U%DFsd'
 
+@app.route('/')
+def home():
+    if session.get('token'):
+        return redirect(url_for('post'))
+    else:
+        return redirect(url_for('login'))
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if session.get('token'):
