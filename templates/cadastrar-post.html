@@ -28,15 +28,27 @@
         {% endif %}
     {% endwith %}
 
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="v-card v-bg-success">
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
     <div class="v-card">
         <form method="POST">
             <p>Título</p>
-            <input type="text" class="v-field" name="title">
+            <input type="text" class="v-field" required name="title">
 
             <p>Conteúdo</p>
-            <textarea class="v-field" name="contents" rows="10"></textarea>
+            <textarea class="v-field" required name="contents" rows="10"></textarea>
 
-            <button class="v-btn v-bg-success btn-block" type="submit" value="login">Cadastrar</button>
+            <button class="v-btn v-bg-success btn-block" type="submit">Cadastrar</button>
         </form>
     </div>
 </body>
