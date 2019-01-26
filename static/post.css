@@ -1,0 +1,26 @@
+.card {
+  width: 75%;
+  background: #fff;
+  box-shadow: 0 10px 15px #eee;
+  margin: 50px auto;
+}
+
+.post-card {
+  padding: 16px;
+}
+
+.post-card h3 {
+  margin: 0 auto 15px auto;
+  font-size: 36px;
+}
+
+.post-content {
+  background: #fafafa;
+  padding: 18px;
+  margin: 16px auto;  
+}
+
+
+.card-title {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
